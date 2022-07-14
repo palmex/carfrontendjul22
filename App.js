@@ -11,7 +11,8 @@ export default function App() {
     <View style={styles.container}>
       <Text style={textStyle.container}>Hello Class of Stellantis-OU Module 5!</Text>
       
-     <Cars></Cars>
+     <Cars newProp={'#967334'}></Cars>
+     
       
       <StatusBar style="auto" />
     </View>

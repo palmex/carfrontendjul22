@@ -4,14 +4,15 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default class Cars extends React.Component {
 
-    constructor(){
-        super(); 
+    constructor(props){
+        super(props); 
         this.state = {
             stateBool: true,
             make: 'Jeep', 
             model: 'Compass', 
             year: '2019',
-            odometer: '56043'
+            odometer: '56043',
+            headerColor: this.props.newProp
         }
     }
 
@@ -25,6 +26,7 @@ export default class Cars extends React.Component {
 
         return(
             <View style={styles.container}>
+                <Text style={{color: this.state.headerColor}}> New Car Submission Component</Text>
                 <Text>Make </Text>
                 <TextInput
                 style={styles.textinput}
