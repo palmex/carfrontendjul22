@@ -12,24 +12,12 @@ export default class Cars extends React.Component {
             model: 'Compass', 
             year: '2019',
             odometer: '56043'
-        
-        
         }
-       
-
-        
     }
 
 
-
-    firstFunction = () => {
-        this.setState({stateBool:!this.state.stateBool})
-        if (this.state.stateBool){
-            this.setState({stateText: "ON"}) 
-        } else {
-            this.setState({stateText: "OFF"})
-        }
-        
+    createNewCar = () => {
+        console.log("car description on submit", this.state.make, this.state.model, this.state.year, this.state.odometer)
     }
 
 
@@ -38,27 +26,35 @@ export default class Cars extends React.Component {
         return(
             <View style={styles.container}>
                 <Text>Make </Text>
-                <TextInput style={styles.textinput}
+                <TextInput
+                style={styles.textinput}
                 defaultValue={this.state.make}
-                onChangeText={(e) => this.setState({make: e})}></TextInput>
+                onChangeText={(e) => this.setState({make: e})}
+                ></TextInput>
 
 
                 <Text>Model </Text>
                 <TextInput style={styles.textinput}
-                defaultValue={this.state.model}></TextInput>
+                defaultValue={this.state.model}
+                onChangeText={(e) => this.setState({model: e})}
+                ></TextInput>
 
 
                 <Text>Year </Text>
                 <TextInput style={styles.textinput}
-                defaultValue={this.state.year}></TextInput>
+                defaultValue={this.state.year}
+                onChangeText={(e) => this.setState({year: e})}
+                ></TextInput>
 
 
                 <Text>Odometer </Text>
                 <TextInput style={styles.textinput}
-                defaultValue={this.state.odometer}></TextInput>
+                defaultValue={this.state.odometer}
+                onChangeText={(e) => this.setState({odometer: e})}
+                ></TextInput>
 
 
-                <Button onPress={this.firstFunction} title="Button"/>
+                <Button onPress={this.createNewCar} title="Create"/>
                 <Text >{this.state.make}</Text>
                 <Text >{this.state.model}</Text>
                 <Text >{this.state.year}</Text>
