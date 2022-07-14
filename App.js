@@ -9,7 +9,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={textStyle.container}>Hello Class of Stellantis-OU Module 310!</Text>
+      <Text style={textStyle.container}>Hello Class of Stellantis-OU Module 5!</Text>
       
      <Cars></Cars>
       
