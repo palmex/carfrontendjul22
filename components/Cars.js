@@ -13,6 +13,7 @@ export default class Cars extends React.Component {
         super(props); 
         this.state = {
             stateBool: true,
+            data: [],
             make: 'Jeep', 
             model: 'Compass', 
             year: '2019',
@@ -38,6 +39,9 @@ export default class Cars extends React.Component {
         return(
             <View style={styles.container}>
                 <Text style={{color: this.props.newProp}}> New Car Submission Component</Text>
+                
+                {this.state.data.map((car) => <Text key={car.car_id}>{car.make} {car.model} -  {car.year} with {car.odometer} miles on it. CarId({car.car_id})  </Text> )}
+                
                 <Text>Make </Text>
                 <TextInput
                 style={styles.textinput}
