@@ -4,6 +4,11 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default class Cars extends React.Component {
 
+    
+    async componentDidMount(){
+        console.log('component did mount')
+    }
+    
     constructor(props){
         super(props); 
         this.state = {
@@ -74,6 +79,37 @@ export default class Cars extends React.Component {
     }
 }; 
 
+
+async function fetchCars(){
+    return fetch('', {
+        
+        
+        withCredentials: true,
+        // mode: 'no-cors',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin":"*",
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': 'http://localhost:3000/*',
+            'Accept': "application/json",
+        }
+    } ).then(response => {
+        if (response.ok){
+            const cars = response.json()
+            console.log(cars)
+            return cars; 
+        }
+        else {
+            var error = new Error('Error ' + response.status + ':' + response.statusText)
+            error.response = response
+            return error;
+        }
+    }, 
+    error => {
+        var errmess = new Error(error.message); 
+        throw errmess; 
+    })
+}
 
 async function createCar(make1, model1, year1, odometer1) {
 
