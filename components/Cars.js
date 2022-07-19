@@ -30,6 +30,12 @@ export default class Cars extends React.Component {
         console.log("car description on submit", this.state.make, this.state.model, this.state.year, this.state.odometer)
         createCar(this.state.make, this.state.model, this.state.year, this.state.odometer);
     }
+
+    async componentDidMount(){
+        const carsArray = await fetchCars(); 
+        this.setState({data: carsArray})
+        console.log(carsArray)
+    }
  
     
 
@@ -40,7 +46,10 @@ export default class Cars extends React.Component {
             <View style={styles.container}>
                 <Text style={{color: this.props.newProp}}> New Car Submission Component</Text>
                 
-                {this.state.data.map((car) => <Text key={car.car_id}>{car.make} {car.model} -  {car.year} with {car.odometer} miles on it. CarId({car.car_id})  </Text> )}
+                {this.state.data.map((car) =>
+                 <Text key={car.car_id}>{car.make} {car.model} -  {car.year} with {car.odometer} miles on it. CarId({car.car_id})
+                   </Text> 
+                )}
                 
                 <Text>Make </Text>
                 <TextInput
@@ -72,6 +81,8 @@ export default class Cars extends React.Component {
 
 
                 <Button onPress={this.createNewCar} title="Create"/>
+
+                <Button onPress={this.fetchAllCars} title="All Cars"/>
                 {/* <Text >{this.state.make}</Text>
                 <Text >{this.state.model}</Text>
                 <Text >{this.state.year}</Text>
@@ -85,7 +96,7 @@ export default class Cars extends React.Component {
 
 
 async function fetchCars(){
-    return fetch('', {
+    return fetch('http://localhost:3000/' + 'cars/all', {
         
         
         withCredentials: true,
@@ -96,6 +107,7 @@ async function fetchCars(){
             'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Origin': 'http://localhost:3000/*',
             'Accept': "application/json",
+            'admin':'true',
         }
     } ).then(response => {
         if (response.ok){
