@@ -29,6 +29,12 @@ export default class Cars extends React.Component {
         
         console.log("car description on submit", this.state.make, this.state.model, this.state.year, this.state.odometer)
         createCar(this.state.make, this.state.model, this.state.year, this.state.odometer);
+        this.forceUpdate()
+    }
+
+    async forceUpdate(){
+        const carsArray = await fetchCars(); 
+        this.setState({data: carsArray})
     }
 
     async componentDidMount(){
