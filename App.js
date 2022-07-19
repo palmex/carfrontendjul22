@@ -12,6 +12,7 @@ export default function App() {
       <Text style={textStyle.container}>Hello Class of Stellantis-OU Module 5!</Text>
       
      <Cars newProp={'#967334'}></Cars>
+    
      
       
       <StatusBar style="auto" />
