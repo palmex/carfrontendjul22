@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Cars from './components/Cars';
+import {AppRegistry} from 'react-native';
+import {expo as appName} from './app.json'; 
 
 export default function App() {
 
@@ -11,7 +13,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={textStyle.container}>Hello Class of Stellantis-OU Module 5!</Text>
       
-     <Cars newProp={'#967334'}></Cars>
+     <Cars ></Cars>
     
      
       
@@ -37,3 +39,5 @@ const textStyle = StyleSheet.create({
     fontSize: '24px'
   },
 });
+
+AppRegistry.registerComponent(appName.name, () => App);

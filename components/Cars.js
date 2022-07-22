@@ -5,9 +5,19 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 export default class Cars extends React.Component {
 
     
-    async componentDidMount(){
-        console.log('component did mount')
-    }
+    async componentDidMount() {
+        console.log('component did mount');
+        const response =  await fetchCars();
+        // cars = JSON.parse(response[0].toString())
+        console.log('response', response)
+        // console.log('cars',cars)
+        this.setState({ data: response })
+        // this.setState({ car_id: response[0].car_id })
+        // this.setState({ make: response[0].make })
+        // this.setState({ model: response[0].model })
+        // this.setState({ year: response[0].year })
+        console.log(this.state.data)
+      }
     
     constructor(props){
         super(props); 
@@ -32,19 +42,15 @@ export default class Cars extends React.Component {
         this.forceUpdate()
     }
 
-    async forceUpdate(){
-        const carsArray = await fetchCars(); 
-        this.setState({data: carsArray})
+    fetchAllCars = () =>{
+        this.forceUpdate()
     }
-
-    async componentDidMount(){
-        const carsArray = await fetchCars(); 
-        this.setState({data: carsArray})
-        console.log(carsArray)
-    }
- 
     
-
+    async forceUpdate(){
+        console.log("update complete")
+        const response =  await fetchCars();
+        this.setState({ data: response })
+      }
 
     render(){
          
@@ -52,10 +58,10 @@ export default class Cars extends React.Component {
             <View style={styles.container}>
                 <Text style={{color: this.props.newProp}}> New Car Submission Component</Text>
                 
-                {this.state.data.map((car) =>
+                {(this.state.data.map((car) =>
                  <Text key={car.car_id}>{car.make} {car.model} -  {car.year} with {car.odometer} miles on it. CarId({car.car_id})
                    </Text> 
-                )}
+                ))}
                 
                 <Text>Make </Text>
                 <TextInput
@@ -86,7 +92,7 @@ export default class Cars extends React.Component {
                 ></TextInput>
 
 
-                <Button onPress={this.createNewCar} title="Create"/>
+                <Button onPress={this.createNewCaqr} title="Create"/>
 
                 <Button onPress={this.fetchAllCars} title="All Cars"/>
                 {/* <Text >{this.state.make}</Text>
